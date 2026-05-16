@@ -1,6 +1,6 @@
 """LP-based assignment-problem baseline.
 
-Per spec2 Stage 2: maximize Sales over a 14-day window by selecting
+Per the algorithm spec Stage 2: maximize Sales over a 14-day window by selecting
 (account, day, brand) assignments under a daily face-time capacity. No
 within-window daily replans; we re-solve only at each window boundary.
 
@@ -35,13 +35,13 @@ import numpy as np
 import pulp
 
 
-# Spec1 §4.2 segment table.
+# segment table.
 SEG_VALUE = {"A": 5.0, "B": 2.0, "C": 1.0}
 SEG_TARGET = {"A": 24, "B": 12, "C": 6}
 SEG_LIFT_A = {"A": 1.0, "B": 0.8, "C": 0.5}
 SEG_LIFT_B = {"A": 0.12, "B": 0.18, "C": 0.30}
 
-# Mean call duration per (rep_type, segment) from spec1 §8.4 weighted by
+# Mean call duration per (rep_type, segment) from weighted by
 # the probability table. Precomputed.
 DURATION_PROBS = {
     ("specialty",   "A"): [0.05, 0.15, 0.40, 0.40],

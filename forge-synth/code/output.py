@@ -1,4 +1,4 @@
-"""CSV and JSON writers for the eight output files (spec1 Section 9)."""
+"""CSV and JSON writers for the eight output files."""
 from __future__ import annotations
 
 import csv

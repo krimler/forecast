@@ -1,4 +1,4 @@
-"""Result aggregation for figure CSVs (spec2 §11.9)."""
+"""Result aggregation for figure CSVs."""
 from __future__ import annotations
 
 from typing import Dict, List, Tuple

@@ -1,4 +1,4 @@
-"""Figure 2: source decomposition (spec2 §12.2)."""
+"""Figure 2: source decomposition."""
 from __future__ import annotations
 
 import pandas as pd

@@ -1,7 +1,7 @@
-"""Foursquare TSMC 2014 adapter (spec2 Section 10.2).
+"""Foursquare TSMC 2014 adapter.
 
 The TSMC 2014 file is one tab-separated row per check-in. We map check-ins
-to the spec1 schema as follows.
+to the dataset schema as follows.
 
     rep            user
     account        venue
@@ -9,16 +9,15 @@ to the spec1 schema as follows.
     segment        per-user quantile of venue visit count (A 15%, B 35%, C 50%)
     call event     check-in (one row in activity_log)
     brand          random per-force assignment
-    priority       drawn from spec1 §5 regimes
-    duration       sampled from spec1 segment-rep-type distribution
+    priority       drawn from regimes
+    duration       sampled from the dataset spec segment-rep-type distribution
     rep type       quantile of total check-ins per user
 
 The segment / brand / priority overlay is synthetic; this dataset is for
-structural-validity checks, not real-world fidelity (spec2 §10.1).
+structural-validity checks, not real-world fidelity.
 
 Uncertainty (absence, availability, churn) is injected on top using the
-same procedures as spec1 §7.
-"""
+same procedures as """
 from __future__ import annotations
 
 import csv
@@ -33,7 +32,7 @@ from typing import Dict, List, Tuple
 import numpy as np
 import pandas as pd
 
-# Reach into forge-synth for the spec1 sampling logic so absence/availability/
+# Reach into forge-synth for the dataset spec sampling logic so absence/availability/
 # churn injection is exactly the same as the synthetic generator.
 HERE = Path(__file__).resolve().parent
 FORGE_SYNTH_CODE = HERE.parent.parent / "forge-synth" / "code"
@@ -49,7 +48,7 @@ from world import Rep, ForceConfig      # noqa: E402
 SEG_NAMES = ("A", "B", "C")
 SEG_BOUNDARIES = (0.15, 0.50, 1.00)     # top 15% = A, next 35% = B, last 50% = C
 
-REP_TYPE_BUCKETS = (0.20, 0.70, 1.00)   # by total check-ins; matches spec1 mix
+REP_TYPE_BUCKETS = (0.20, 0.70, 1.00)   # by total check-ins; matches the dataset spec mix
 
 
 # ---- Load raw.
@@ -147,7 +146,7 @@ def assign_force_bag(num_forces: int, num_brands: int,
                      rng: np.random.Generator) -> Tuple[Dict[int, List[int]],
                                                           Dict[int, List[float]],
                                                           Dict[int, str]]:
-    """Mirror spec1 §5 bag and priority sampling."""
+    """Mirror bag and priority sampling."""
     base, rem = divmod(num_brands, num_forces)
     force_brands: Dict[int, List[int]] = {}
     cursor = 0
@@ -213,7 +212,7 @@ def inject_uncertainty(*, cfg: fs_config.Config, df: pd.DataFrame,
     venue_ids = sorted({v for vs in panels.values() for v in vs})
     aid_of_venue = {v: i for i, v in enumerate(venue_ids)}
 
-    # Rep absences and sick days, using spec1's calendars + daily sick draw.
+    # Rep absences and sick days, using the dataset spec's calendars + daily sick draw.
     planned_by_rep: Dict[int, list] = {}
     sick_by_rep: Dict[int, list] = {}
     for uid in user_ids:
@@ -250,7 +249,7 @@ def inject_uncertainty(*, cfg: fs_config.Config, df: pd.DataFrame,
                 was_sick = False
         sick_by_rep[uid] = sick_events
 
-    # Venue availability: per venue Markov chain, vectorized using spec1's
+    # Venue availability: per venue Markov chain, vectorized using the dataset spec's
     # logic by re-keying account ids.
     N = len(venue_ids)
     avail = np.ones((N, horizon), dtype=bool)
@@ -269,7 +268,7 @@ def inject_uncertainty(*, cfg: fs_config.Config, df: pd.DataFrame,
                 else:
                     is_avail = u[t] >= pers
 
-    # Churn: same model as spec1 §7.3, fires once per user.
+    # Churn: same model as fires once per user.
     churn_events = []
     p_horizon = float(np.clip(cfg.p_churn_annual * horizon / 365.0, 0.0, 1.0))
     for uid in user_ids:
@@ -404,7 +403,7 @@ def _generate_reference_plans(*, cfg: fs_config.Config,
 
 # ---- Output writing.
 
-def emit_spec1_schema(*, out_dir: str, cfg: fs_config.Config,
+def emit_schema(*, out_dir: str, cfg: fs_config.Config,
                       df: pd.DataFrame, panels: Dict[int, List[str]],
                       segments: Dict[int, Dict[str, str]],
                       rep_types: Dict[int, str], forces: Dict[int, int],
@@ -438,7 +437,7 @@ def emit_spec1_schema(*, out_dir: str, cfg: fs_config.Config,
                         forces.get(uid, 0), ps, start.isoformat(), ""])
         # Churn replacements: keep things simple, no new rep types beyond
         # the originals; we just mark depart_date on the original row.
-        # (For the harness this is enough; the spec1 representation creates
+        # (For the harness this is enough; the dataset spec representation creates
         # new rep_ids but the simplified mapping avoids extra accounting.)
 
     # accounts.csv
@@ -633,7 +632,7 @@ def build_dataset(*, raw_path: str, out_dir: str, seed: int = 42,
                   num_forces: int = 3,
                   start: date = date(2012, 4, 12),
                   horizon: int = 300) -> str:
-    """Process a Foursquare TSV into spec1-schema CSVs. Returns out_dir."""
+    """Process a Foursquare TSV into the standard schema CSVs. Returns out_dir."""
     rng = np.random.default_rng(seed)
     cfg = fs_config.Config(
         seed=seed, horizon_days=horizon, warmup_days=min(90, horizon // 3),
@@ -660,7 +659,7 @@ def build_dataset(*, raw_path: str, out_dir: str, seed: int = 42,
         forces=forces, start=start, horizon=horizon, rng=rng,
     )
 
-    emit_spec1_schema(
+    emit_schema(
         out_dir=out_dir, cfg=cfg, df=raw, panels=panels, segments=segments,
         rep_types=rep_types, forces=forces, bag=bag, priorities=priorities,
         regime=regime, brand_eligibility=brand_eligibility,
@@ -673,7 +672,7 @@ def build_dataset(*, raw_path: str, out_dir: str, seed: int = 42,
 
 def cli():
     import argparse
-    p = argparse.ArgumentParser(description="Foursquare TSMC 2014 -> spec1 schema")
+    p = argparse.ArgumentParser(description="Foursquare TSMC 2014 -> the dataset schema")
     p.add_argument("--city", choices=["nyc", "tky"], required=True)
     p.add_argument("--raw-root", default="public_dataset/foursquare/raw/dataset_tsmc2014")
     p.add_argument("--out", default=None)

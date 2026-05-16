@@ -1,6 +1,6 @@
 """Account universe, forces, reps, panels.
 
-Builds the static structure of one simulation (spec1 Sections 4-6).
+Builds the static structure of one simulation.
 Two outputs:
     World      accounts, specialties, segments, brand eligibility, force layout
     Population reps with their type, force, and panel

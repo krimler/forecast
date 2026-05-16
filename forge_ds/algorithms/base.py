@@ -1,7 +1,5 @@
 """Common interface and data structures shared by every algorithm.
 
-Spec2 Section 3.
-
 An Algorithm has three lifecycle methods. `fit` runs once on the warmup
 window. `predict_window` produces a 14-day plan starting at a given date.
 `replan_within_window` updates a plan when new disruptions arrive,
@@ -27,8 +25,8 @@ import numpy as np
 class ActivityHistory:
     """Realized activity over a window of time.
 
-    All dataframes follow the spec1 output schema. The harness builds
-    this by reading the spec1 dataset directory and masking to the
+    All dataframes follow the dataset spec output schema. The harness builds
+    this by reading the dataset spec dataset directory and masking to the
     visibility window.
     """
     events: pd.DataFrame          # activity_log.csv subset (scenario_id="actual")
@@ -184,8 +182,7 @@ def assign_start_times(day_calls: List[PlannedCall],
     """Pack calls into a day's clock, dropping ones that would run past 18:00.
 
     The clock starts at 9:00 and advances by (duration + 15-min gap) for
-    every accepted call. Spec1 Section 8.5.
-    """
+    every accepted call. """
     accepted: List[PlannedCall] = []
     cur = day_start_minute
     for c in day_calls:

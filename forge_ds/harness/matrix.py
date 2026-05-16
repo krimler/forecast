@@ -1,11 +1,11 @@
-"""Experimental matrix definition (spec2 Section 11.3)."""
+"""Experimental matrix definition."""
 from __future__ import annotations
 
 from dataclasses import dataclass, asdict
 from typing import Dict, List
 
 
-# Uncertainty intensity levels (spec2 §11.1).
+# Uncertainty intensity levels.
 UNCERTAINTY_LEVELS: Dict[str, Dict[str, float]] = {
     "none": {"p_account_unavail": 0.00, "sick_days_per_year_mean": 0,
              "vacation_days_per_year_mean": 0, "personal_days_per_year_mean": 0,
@@ -58,7 +58,7 @@ def build_smoke_matrix(seeds: List[int] = (42,),
 
 
 def build_full_matrix(seeds: List[int] = (42, 43, 44, 45, 46)) -> List[Cell]:
-    """The full deduplicated F1-F5 matrix from spec2 §11.3."""
+    """The full deduplicated F1-F5 matrix from """
     cells: List[Cell] = []
 
     # F1 (data characterization) is one synthetic-default cell.
@@ -87,7 +87,7 @@ def build_full_matrix(seeds: List[int] = (42, 43, 44, 45, 46)) -> List[Cell]:
                     uncertainty_level="default", priority_regime=reg, seed=s,
                 ))
 
-    # F4 cells overlap with F3 default-priority cells (spec2 §11.3 B10).
+    # F4 cells overlap with F3 default-priority cells (B10).
 
     # F5 (external validity): 5 algos x 2 cities x default x 5 seeds.
     for algo in ALGORITHMS:

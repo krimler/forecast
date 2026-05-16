@@ -1,4 +1,4 @@
-"""Figure 5: external validity on Foursquare (spec2 §12.5).
+"""Figure 5: external validity on Foursquare.
 
 Same layout as Figure 4 but filtered to the foursquare_nyc and
 foursquare_tokyo datasets.

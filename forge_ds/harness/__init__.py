@@ -1,1 +1,1 @@
-"""Experimental harness (spec2 Section 11)."""
+"""Experimental harness."""

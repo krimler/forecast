@@ -1,6 +1,4 @@
-"""Full validation suite for spec1 Section 13.
-
-Runs every check in the sign-off list (S, C, T, D, M) plus the feasibility
+"""Full validation suite for Runs every check in the sign-off list (S, C, T, D, M) plus the feasibility
 rejection test. Writes a JSON summary alongside the outputs.
 
 Run as a script:

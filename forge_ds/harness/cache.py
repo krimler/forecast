@@ -1,4 +1,4 @@
-"""Tiny on-disk cache for trained algorithms (spec2 §11.5).
+"""Tiny on-disk cache for trained algorithms.
 
 Cache key = SHA-256 of (dataset_hash, algorithm_name, seed). Values are
 pickled. Same trained Neural TPP weights get reused across F2/F3/F4 cells

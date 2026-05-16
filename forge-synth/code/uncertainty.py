@@ -1,7 +1,5 @@
 """Uncertainty processes: account availability, rep absences, churn.
 
-Spec1 Sections 7.1, 7.2, 7.3.
-
 Account availability is a two-state Markov chain per account. Rep planned
 absences (vacation, personal, conference) are sampled at simulation start.
 Sick days are sampled inside the daily loop (see simulate.py) because they

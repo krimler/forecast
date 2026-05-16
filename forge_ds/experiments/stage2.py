@@ -401,7 +401,7 @@ def _run_one_rep(args):
         if algo == "markov":
             # Refresh dow on each window.
             model["window_start_dow"] = (w_start_day) % 7
-        # Reset n_a_b at calendar year boundary (matches spec1 §8.2).
+        # Reset n_a_b at calendar year boundary (matches ).
         # Approximate by zeroing every 252 working days (~365 calendar).
         if w_start_day // 365 != (w_start_day - window_size) // 365:
             n_a_b = {}

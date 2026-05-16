@@ -1,4 +1,4 @@
-"""Figure 4: main comparison (spec2 §12.4).
+"""Figure 4: main comparison.
 
 5 algorithms x 3 metrics. For each (algorithm, metric) cell we emit the
 per-seed values (for the box plot) plus the paired Wilcoxon test vs the

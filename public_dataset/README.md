@@ -1,6 +1,6 @@
 # public_dataset
 
-External datasets, raw and processed into the spec1 schema for ForgeDS.
+External datasets, raw and processed into the dataset schema for ForgeDS.
 
 ## Foursquare TSMC 2014
 
@@ -15,10 +15,10 @@ foursquare/
       dataset_TSMC2014_NYC.txt         227 428 NYC check-ins
       dataset_TSMC2014_TKY.txt         573 703 Tokyo check-ins
       dataset_TSMC2014_readme.txt
-  nyc/                                 spec1-schema CSVs, seed 42
-  nyc_s43/                             spec1-schema CSVs, seed 43
-  tokyo/                               spec1-schema CSVs, seed 42
-  tokyo_s43/                           spec1-schema CSVs, seed 43
+  nyc/                                 the standard schema CSVs, seed 42
+  nyc_s43/                             the standard schema CSVs, seed 43
+  tokyo/                               the standard schema CSVs, seed 42
+  tokyo_s43/                           the standard schema CSVs, seed 43
 ```
 
 ### Source
@@ -42,7 +42,7 @@ user_id  venue_id  category_id  category_name  lat  lon  tz_offset_min  utc_time
 #### Summary
 
 Two cities, ten months of public check-ins, adapted into the field-force
-schema. One spec1 dataset directory per (city, seed), with the same eight
+schema. One the dataset spec dataset directory per (city, seed), with the same eight
 files ForgeSynth produces.
 
 #### Scale (after filtering and adaptation)
@@ -64,18 +64,18 @@ top 200 most-visited venues per user become that user's panel.
 | call event | check-in |
 | panel | user's top 200 venues by visit count |
 | segment (A/B/C) | per-user visit-count quantile (top 15 % / next 35 % / last 50 %) |
-| rep type | per-user quantile of total check-ins (mirrors spec1 type mix) |
+| rep type | per-user quantile of total check-ins (mirrors the dataset spec type mix) |
 | force assignment | random uniform |
-| brand bag and priorities | spec1 §5 regimes, sampled per force |
+| brand bag and priorities | regimes, sampled per force |
 | brand eligibility | each (venue, brand) pair True with probability 0.30, independently |
-| call duration | spec1 segment-rep-type distribution |
-| absences, unavailability, churn | injected via the spec1 procedures |
+| call duration | the dataset spec segment-rep-type distribution |
+| absences, unavailability, churn | injected via the dataset spec procedures |
 
 #### Why a synthetic overlay
 
 Foursquare has no real concept of segment, brand, priority, or
 unavailability. We inject all of those on top of the real spatio-temporal
-sequence pattern. Per spec2 §10.1 this tests *structural validity* (do
+sequence pattern. Per this tests *structural validity* (do
 the methods behave the same on realistic sequence shapes from real
 human behavior), not real-world fidelity.
 
@@ -83,9 +83,9 @@ human behavior), not real-world fidelity.
 
 Each output directory contains all three scenarios in `activity_log.csv`:
 `actual`, `greedy_upper`, and `naive`. The greedy and naive plans are
-computed by the same spec1 algorithms used in ForgeSynth. The greedy
+computed by the same the dataset spec algorithms used in ForgeSynth. The greedy
 ceiling on Foursquare is roughly 10x the realised check-in volume
-because spec1's per-rep daily call budget (~5-12 calls) is much larger
+because the dataset spec's per-rep daily call budget (~5-12 calls) is much larger
 than real Foursquare users produce (~1-2 check-ins per day). Treat the
 ceiling as a relative comparator across algorithms run on the same
 Foursquare dataset; do not interpret a low realised/ceiling ratio as
@@ -109,7 +109,7 @@ Every output directory contains the same eight files as ForgeSynth:
 - The category and lat/lon fields from the raw data are dropped.
 - The synthetic overlay (segments, brands, priorities, uncertainty)
   is held out from any claims about the dataset's real-world meaning.
-- The spec1 greedy and naive reference plans assume daily call budgets
+- The dataset spec greedy and naive reference plans assume daily call budgets
   much higher than real Foursquare volumes; sales-norm against them is
   not meaningful (see "Reference plans" above).
 
@@ -122,7 +122,7 @@ sonar/
   raw/
     metadata.json                      cached subject+activity metadata
                                        from streaming SONAR_ML.zip
-  processed/                           spec1-schema CSVs
+  processed/                           the standard schema CSVs
 ```
 
 ### Source
@@ -146,7 +146,7 @@ nursing home. 23 labelled activity types (medication, vital signs,
 hygiene, mobility, documentation, etc.). 61.7 hours of recording in
 total across all caregivers, split into 254 recording files.
 
-#### Scale (after spec1 adaptation)
+#### Scale (after the dataset spec adaptation)
 
 | Stat | Value |
 |---|---|
@@ -165,7 +165,7 @@ total across all caregivers, split into 254 recording files.
 | call event | one recording file |
 | segment (A/B/C) | manual mapping by complexity: A high-skill (medication, vital signs, transfer), B routine clinical care (hygiene, dressing), C ancillary (documentation, walking) |
 | panel | every activity type for every caregiver |
-| brand | single brand 0 per spec2 §10.3 |
+| brand | single brand 0 |
 | duration | sensor sample count / 60 Hz / 60 (capped at 120 min) |
 
 #### Provenance
@@ -176,7 +176,7 @@ Cached metadata at `sonar/raw/metadata.json` makes re-runs instant. The
 #### Limitations
 
 - SONAR has no native concept of accounts (patients), absences, or
-  unavailability. The spec2 procedure of "infer patients from location
+  unavailability. The algorithm spec procedure of "infer patients from location
   + co-occurrence" requires per-room metadata that the ML version
   doesn't expose. Activities are used as the "account" surrogate.
 - One call per (rep, day) by construction means CV is 0, R^2 is 1

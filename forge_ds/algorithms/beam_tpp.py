@@ -1,4 +1,4 @@
-"""Beam TPP ablation (spec2 Section 7).
+"""Beam TPP ablation.
 
 Same model and weights as Neural TPP. Inference uses beam search with
 basic feasibility masks only (panel, no-rep, availability, eligibility).

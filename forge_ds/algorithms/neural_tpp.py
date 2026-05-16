@@ -1,4 +1,4 @@
-"""Neural Temporal Point Process baseline (spec2 Section 6).
+"""Neural Temporal Point Process baseline.
 
 A two-layer transformer encoder predicts the next event in a rep's day.
 The mark is factored as P(account) * P(brand|account) * P(duration|a,b);
@@ -273,7 +273,7 @@ class NeuralTPPAlgorithm(Algorithm):
             panel_by_rep[int(rid)] = grp["account_id"].astype(int).tolist()
 
         # Force config: bag + priorities. Re-derive from the activity log
-        # since the spec1 dataset already realized one regime per force.
+        # since the dataset spec dataset already realized one regime per force.
         force_bag: Dict[int, List[int]] = {}
         force_priorities: Dict[int, Dict[int, float]] = {}
         for fid, grp in ev.merge(history.population[["rep_id", "force_id"]],

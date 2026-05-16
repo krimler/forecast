@@ -1,7 +1,5 @@
 """Daily activity loop, segment transitions, reference plans.
 
-Spec1 Sections 8, 8.7, 10.
-
 A few design notes that aren't visible from the code alone:
 
 1. Sick-rate denominator is the working-day count of the calendar year

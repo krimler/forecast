@@ -1,4 +1,4 @@
-"""Harness CLI (spec2 §11.5, §11.7, §11.8).
+"""Harness CLI (§11.7, §11.8).
 
 Subcommands:
     smoke   small matrix on forge-synth/dataset/output_smoke

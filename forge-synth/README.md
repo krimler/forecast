@@ -89,7 +89,7 @@ no calendar entries, no news). Data-quality corruption (no missingness,
 no outliers, no schema drift). Multi-rep coordination beyond churn
 handoff. Brand launches or retirements. Account churn.
 
-### Documented deviations from spec1
+### Documented deviations from the dataset spec
 
 Six. Each one has an inline comment in the relevant file and a longer
 note in `../checkmark.md` Section 7.

@@ -1,7 +1,7 @@
 """SONAR (Sensor-based Nursing Activity Recognition) adapter.
 
 The dataset (Lübbe et al, Nature Sci Data 2023) is 14 caregivers wearing
-inertial sensors while doing labelled nursing tasks. Per spec2 §10.3 we
+inertial sensors while doing labelled nursing tasks. Per we
 map caregivers to reps and activity types to accounts. Each recording
 file in SONAR_ML is one labelled activity instance.
 
@@ -131,9 +131,9 @@ def stream_metadata() -> List[Dict]:
     return rows
 
 
-def emit_spec1_schema(rows: List[Dict], out_dir: str,
+def emit_schema(rows: List[Dict], out_dir: str,
                       sample_hz: float = 60.0) -> None:
-    """Lay the SONAR recordings out in the spec1 schema.
+    """Lay the SONAR recordings out in the dataset schema.
 
     rep_id            <- subject_id (renumbered 0..N-1)
     account_id        <- activity name (renumbered 0..M-1)
@@ -141,8 +141,7 @@ def emit_spec1_schema(rows: List[Dict], out_dir: str,
     start_time        <- 09:00 + 30 minutes between events
     planned_duration  <- n_rows_estimate / sample_hz / 60 (minutes)
     segment           <- ACTIVITY_TO_SEGMENT (or 'B' fallback)
-    brand             <- single brand 0 per spec2 §10.3
-    """
+    brand             <- single brand 0 """
     os.makedirs(out_dir, exist_ok=True)
 
     subjects = sorted({r["subject_id"] for r in rows})
@@ -279,8 +278,8 @@ def main():
     print(f"  {len(activities)} distinct activities: " + ", ".join(activities[:10])
           + ("..." if len(activities) > 10 else ""))
 
-    print("\nwriting spec1-schema CSVs...")
-    emit_spec1_schema(rows, args.out)
+    print("\nwriting the standard schema CSVs...")
+    emit_schema(rows, args.out)
     print(f"\ndone in {time.perf_counter()-t0:.1f}s")
 
 

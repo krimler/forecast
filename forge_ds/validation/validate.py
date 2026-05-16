@@ -1,4 +1,4 @@
-"""Validation suite for the spec2 deliverable.
+"""Validation suite for the algorithm spec deliverable.
 
 Covers Algorithm checks (A1-A6), Dataset checks (D1-D3), Harness checks
 (H1-H4), and Figure checks (F1-F3). Writes validation_results.json next
@@ -110,7 +110,7 @@ def check_constraints(log_path: str) -> List[Tuple[str, bool, str]]:
 
 
 def check_dataset_schema() -> List[Tuple[str, bool, str]]:
-    """D1: Foursquare outputs follow the spec1 schema."""
+    """D1: Foursquare outputs follow the dataset schema."""
     results = []
     expected_files = ["config.json", "population.csv", "accounts.csv",
                       "panels.csv", "segment_history.csv", "activity_log.csv",

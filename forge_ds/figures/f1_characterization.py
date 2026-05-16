@@ -1,6 +1,6 @@
-"""Figure 1: data characterization (spec2 §12.1).
+"""Figure 1: data characterization.
 
-Reads the spec1 dataset directly (no harness needed) and writes the
+Reads the dataset spec dataset directly (no harness needed) and writes the
 six-panel summary stats. Each panel becomes one CSV.
 """
 from __future__ import annotations

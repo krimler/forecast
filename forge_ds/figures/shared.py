@@ -1,4 +1,4 @@
-"""Shared helpers for figure CSV writers (spec2 §12)."""
+"""Shared helpers for figure CSV writers."""
 from __future__ import annotations
 
 import os

@@ -1,4 +1,4 @@
-"""Figure 3: Pareto frontier (spec2 §12.3)."""
+"""Figure 3: Pareto frontier."""
 from __future__ import annotations
 
 import pandas as pd

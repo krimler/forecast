@@ -1,4 +1,4 @@
-"""Constrained Neural TPP (spec2 Section 8).
+"""Constrained Neural TPP.
 
 Same model and weights as Neural TPP. Inference runs beam search with
 six constraints active: panel, no-repetition, availability, eligibility,
@@ -27,7 +27,7 @@ from .neural_tpp import (
 )
 
 
-# Spec1 §4.2 annual call targets per segment.
+# annual call targets per segment.
 SEGMENT_TARGET = {"A": 24, "B": 12, "C": 6}
 
 
@@ -43,7 +43,7 @@ class ConstrainedTPPAlgorithm(BeamTPPAlgorithm):
         self.capacity_minutes = int(self.config.get("capacity_minutes", 360))
         self.fallback_capacity_minutes = int(self.config.get("fallback_capacity_minutes", 480))
         # Window length is needed to scale the annual frequency target down
-        # to a per-window cap. Defaults to 14 days (spec2 §2.2 rolling).
+        # to a per-window cap. Defaults to 14 days (rolling).
         self.window_days = int(self.config.get("window_days", 14))
         # Ablation knob: when True, no attempt enforces the over-call cap.
         # Used to isolate capacity-only constraints from over-call constraints.

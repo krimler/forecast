@@ -1,4 +1,4 @@
-"""Prophet aggregate forecaster (spec2 Section 5).
+"""Prophet aggregate forecaster.
 
 Per rep, we fit four daily series: total, A-tier, B-tier, C-tier. Each
 series is the count of completed-or-abbreviated calls per day. Absent
@@ -39,12 +39,11 @@ except ImportError:
 SEG_NAMES = ("A", "B", "C")
 DURATION_VALUES = [30, 45, 60, 75]
 
-# Per-segment frequency targets and lift params from spec1 Section 4.
-SEGMENT_TARGET = {"A": 24, "B": 12, "C": 6}
+# Per-segment frequency targets and lift params from SEGMENT_TARGET = {"A": 24, "B": 12, "C": 6}
 
 
 def _frequency_adherence(n: int, target: int) -> float:
-    """Triangular score from spec1 §8.2: peaks at target, zero at 0 or 2*target."""
+    """Triangular score from : peaks at target, zero at 0 or 2*target."""
     if target <= 0:
         return 0.0
     return max(0.0, 1.0 - abs(n - target) / target)

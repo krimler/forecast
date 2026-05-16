@@ -3,7 +3,7 @@
 Computation layer for the field-force forecasting study. Consumes
 ForgeSynth output (or one of the public-dataset adapters) and runs
 forecasting algorithms against it. Six algorithms are implemented:
-five from the original spec2 plus an LP-based assignment baseline
+five from the original algorithm spec plus an LP-based assignment baseline
 added during method selection.
 
 ## Quickstart
@@ -38,17 +38,17 @@ forge_ds/
                  constrained_tpp, lp_assignment)
   datasets/      adapters for foursquare, sonar
   harness/       matrix, runner, cache, logger, aggregator, CLI
-                 (used by the early spec2 ML runs; superseded for
+                 (used by the early the algorithm spec ML runs; superseded for
                   method selection by stage2.py)
-  figures/       per-figure CSV producers (held over from the spec2
+  figures/       per-figure CSV producers (held over from the algorithm spec
                  paper-figure pipeline; not used after the reframe)
-  validation/    spec2 A / D / H / F check suite
+  validation/    the algorithm spec A / D / H / F check suite
   results/       run logs, result CSVs, cached models
   experiments/   runnable record of the project's investigations:
                    analyze_data.py        four-pass dataset characterization
                    probe.py               Stage 1 diagnostic probes
                    probe_orthogonal.py    ablation probe used to test
-                                          the spec2 paper claim
+                                          the algorithm spec paper claim
                    stage1.py              default-scale baseline runner
                                           (left in for record; the per-rep
                                           harness was the bottleneck and
@@ -57,8 +57,8 @@ forge_ds/
                                           used for the main results
                    stage2_vm.py           volume-matched Markov experiment
 public_dataset/
-  foursquare/    raw zip + per-city spec1-schema CSVs (NYC, Tokyo)
-  sonar/         raw streamed metadata + processed spec1-schema CSVs
+  foursquare/    raw zip + per-city the standard schema CSVs (NYC, Tokyo)
+  sonar/         raw streamed metadata + processed the standard schema CSVs
 ```
 
 ## Algorithm files
@@ -76,7 +76,7 @@ public_dataset/
 ## Stage 2 headline results
 
 LP, Markov, and Naive on three datasets, two seeds each. Sales reported
-as absolute units (Eq. 1 from spec1). For Foursquare the spec1-style
+as absolute units (Eq. 1 from the dataset spec). For Foursquare the 
 greedy ceiling is mis-specified for consumer check-in volumes, so
 sales_norm against it is not meaningful; absolute numbers tell the
 real story. Full table in `results/stage2.csv` and `results/stage2_vm.csv`.

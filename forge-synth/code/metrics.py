@@ -1,4 +1,4 @@
-"""Evaluation metrics and the fixed reference replanner (spec1 Section 11).
+"""Evaluation metrics and the fixed reference replanner.
 
 Five metrics from the spec:
     Sales              Eq. 1, with SalesNorm (Eq. 2) for cross-scenario comparison
@@ -289,7 +289,7 @@ class RobustnessResult:
                     is therefore degenerate (a near-empty plan reports
                     ratio close to 1 regardless of how good it is)
 
-    The ratio is the spec1 metric. absolute_loss is the companion view
+    The ratio is the dataset spec metric. absolute_loss is the companion view
     that does not reward empty plans. Read both, especially when comparing
     algorithms that produce plans of different sizes.
     """

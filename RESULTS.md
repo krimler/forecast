@@ -96,7 +96,7 @@ What the numbers support and don't support:
 - **Not supported:** "LP gives a 40-70% Sales improvement over
   Markov". That's only true when LP gets a larger daily budget than
   Markov. The volume-matched comparison retracts this claim.
-- **Not supported:** the original spec2 "Constrained TPP as paper
+- **Not supported:** the original algorithm spec "Constrained TPP as paper
   contribution". The orthogonal-constraint probe showed the
   Constrained-vs-Beam gap was the over-call cap accidentally
   aligning with the Sales objective, not a property of the constraint

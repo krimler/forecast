@@ -1,4 +1,4 @@
-"""Append-only result log (spec2 §11.7).
+"""Append-only result log.
 
 Atomic per-row writes: stage to <log>.partial, fsync, then rename. This
 keeps the on-disk file consistent if the process dies mid-run, so resume

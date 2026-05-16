@@ -1,6 +1,6 @@
 """Configuration, parameter tables, RNG seeding, and feasibility check.
 
-All defaults follow spec1 Sections 3-8. The Config dataclass is the single
+All defaults follow The Config dataclass is the single
 source of truth at run time. Tables (SEGMENT_DEFAULTS, REP_TYPES, etc.)
 hold the constants the spec calls out separately because they live in
 tables rather than scalar fields.

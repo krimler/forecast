@@ -1,9 +1,9 @@
-"""Single-cell runner (spec2 §11.4).
+"""Single-cell runner.
 
 A "cell" is one (algorithm, dataset, uncertainty_level, priority_regime,
 seed) configuration. Running a cell does:
 
-1. Load the spec1-schema dataset.
+1. Load the standard schema dataset.
 2. Instantiate the algorithm and either train or reload from cache.
 3. Roll a 14-day plan across the evaluation horizon, replanning daily.
 4. Replay 100 disruption scenarios against the final plan; compute
@@ -65,7 +65,7 @@ ALGO_REGISTRY = {
 # ---- Dataset loading.
 
 def load_dataset_dir(dataset_dir: str) -> ActivityHistory:
-    """Read the eight spec1 files into an ActivityHistory."""
+    """Read the eight the dataset spec files into an ActivityHistory."""
     p = Path(dataset_dir)
     import json
     cfg = json.loads((p / "config.json").read_text())
@@ -372,7 +372,7 @@ def run_cell(cell: Cell, *, dataset_dir: str, cache_root: str,
     sales_alg = fs_metrics.sales(cevents, pop, eval_window=eval_window_idx,
                                  account_segment=seg_init_idx)
 
-    # Greedy and naive reference plans come from the spec1 dataset itself,
+    # Greedy and naive reference plans come from the dataset spec dataset itself,
     # so we read them out of the activity log.
     ref_events = pd.read_csv(Path(dataset_dir) / "activity_log.csv")
     sales_star = _sales_for_scenario(ref_events, "greedy_upper", pop,
@@ -386,7 +386,7 @@ def run_cell(cell: Cell, *, dataset_dir: str, cache_root: str,
     cov = fs_metrics.coverage(cevents, pop, _eligibility_matrix(history, pop),
                               eval_window=eval_window_idx)
 
-    # Robustness: sample availability matrices from the spec1 distribution
+    # Robustness: sample availability matrices from the dataset spec distribution
     # and replay through the fixed reference replanner.
     rob_samples = []
     base_seed = cell.seed
@@ -547,7 +547,7 @@ def _absence_events(history: ActivityHistory, kind: str):
 
 def _sales_for_scenario(activity_df, scenario_id, pop, eval_window_idx,
                         account_segment, start_date) -> float:
-    """Compute Sales for a named scenario stored in the spec1 activity log."""
+    """Compute Sales for a named scenario stored in the dataset spec activity log."""
     df = activity_df[activity_df["scenario_id"] == scenario_id]
     if df.empty:
         return 0.0

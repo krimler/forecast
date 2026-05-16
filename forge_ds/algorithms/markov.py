@@ -1,4 +1,4 @@
-"""Markov chain baseline (spec2 Section 4).
+"""Markov chain baseline.
 
 A first-order Markov chain over rep activity. For each rep we fit five
 conditional distributions: calls per day given dow, first account given
@@ -107,7 +107,7 @@ class RepMarkov:
     def duration(self, rng: np.random.Generator, segment: str, rep_type: str) -> int:
         counts = self.p_duration_given_seg_type.get((segment, rep_type), Counter())
         if not counts:
-            return 45      # spec1 default mid-point
+            return 45      # the dataset spec default mid-point
         probs = _laplace_dist(counts, self.alpha)
         keys = list(probs.keys())
         ps = np.array([probs[k] for k in keys], dtype=float)
