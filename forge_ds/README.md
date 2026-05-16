@@ -125,30 +125,3 @@ Mapping: caregiver to rep, activity type to account, recording to call
 event. SONAR is small enough that it can't drive method selection; we
 include it as an external-data spot check, not a primary benchmark.
 
-## Documented deviations from spec2
-
-1. The figure pipeline (F1-F5) and full 226-cell experimental matrix
-   were dropped during the reframe from "spec2 paper claim" to
-   "method selection". The figure code remains in `forge_ds/figures/`
-   for reference; it isn't run by the current pipeline.
-
-2. The Constrained TPP "ablation gap" was traced to the over-call
-   constraint accidentally aligning with the Sales-optimal cadence.
-   When we replaced over-call with a Sales-orthogonal constraint
-   (tight capacity_minutes only), the gap collapsed. See
-   `probe_orthogonal.py` and the conversation record.
-
-3. The original harness (`forge_ds/harness/`) had per-(rep, window)
-   pandas overhead that didn't scale to default ForgeSynth (1000 reps).
-   Stage 2 onward uses `forge_ds/experiments/stage2.py`, which precomputes per-rep
-   snapshots once at dataset load. The harness still works at smoke
-   scale and is left in for the spec2 ML algorithms.
-
-4. Neural TPP duration loss is downweighted in the training loop. The
-   factored mark head has a duration logit but the cross-entropy term
-   is skipped. This kept training stable on tiny warmup windows. Worth
-   reintroducing if anyone runs Neural TPP at default scale.
-
-5. LP uses a constant per-call duration (mean of the spec1 segment x
-   rep-type duration distribution) instead of sampling. Keeps the LP
-   linear and tractable; loses the duration-mix nuance.
