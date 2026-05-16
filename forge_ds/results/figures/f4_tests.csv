@@ -1,0 +1,13 @@
+algorithm,vs,metric,n,p_value,cliffs_delta,ci_low,ci_high
+beam_tpp,constrained_tpp,sales_norm,1,1.0,-1.0,-0.928704,-0.928704
+beam_tpp,constrained_tpp,coverage,1,1.0,-1.0,0.155101,0.155101
+beam_tpp,constrained_tpp,robustness,1,1.0,1.0,0.964637,0.964637
+markov,constrained_tpp,sales_norm,1,1.0,1.0,0.238786,0.238786
+markov,constrained_tpp,coverage,1,1.0,1.0,0.830522,0.830522
+markov,constrained_tpp,robustness,1,1.0,-1.0,0.915889,0.915889
+neural_tpp,constrained_tpp,sales_norm,1,1.0,1.0,0.096269,0.096269
+neural_tpp,constrained_tpp,coverage,1,1.0,1.0,0.577804,0.577804
+neural_tpp,constrained_tpp,robustness,1,1.0,-1.0,0.921334,0.921334
+prophet,constrained_tpp,sales_norm,1,1.0,-1.0,-1.664936,-1.664936
+prophet,constrained_tpp,coverage,1,1.0,-1.0,0.041326,0.041326
+prophet,constrained_tpp,robustness,1,1.0,1.0,0.982418,0.982418

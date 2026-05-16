@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude / agent caches
+.claude/
+
+# ForgeSynth generated datasets (regenerable via forge-synth/code/generate.py)
+forge-synth/dataset/output_default/
+forge-synth/dataset/output_default_s43/
+forge-synth/dataset/output_p*/
+forge-synth/dataset/output_smoke_*/
+forge-synth/dataset/output_zero/
+forge-synth/dataset/output_bad/
+# (forge-synth/dataset/output_smoke/ is committed as a runnable example)
+
+# Foursquare raw + processed (regenerable via forge_ds/datasets/foursquare.py)
+public_dataset/foursquare/raw/
+public_dataset/foursquare/nyc/
+public_dataset/foursquare/nyc_s43/
+public_dataset/foursquare/tokyo/
+public_dataset/foursquare/tokyo_s43/
+
+# SONAR streamed + processed (regenerable via forge_ds/datasets/sonar.py)
+public_dataset/sonar/raw/
+public_dataset/sonar/processed/
+
+# Model + probe caches (regenerable; per-run)
+forge_ds/results/cache/
+forge_ds/results/cache_*/
+
+# Probe scratch datasets (regenerable)
+forge_ds/results/probe1_data/
+forge_ds/results/probe2_data/
+forge_ds/results/probe3_data/
+
+# Run logs (per-run, not part of the artifact)
+forge_ds/results/*.log

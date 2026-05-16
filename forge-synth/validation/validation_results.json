@@ -1,0 +1,167 @@
+[
+  [
+    "S1::config.json",
+    true,
+    "ok"
+  ],
+  [
+    "S1::population.csv",
+    true,
+    "ok"
+  ],
+  [
+    "S1::accounts.csv",
+    true,
+    "ok"
+  ],
+  [
+    "S1::panels.csv",
+    true,
+    "ok"
+  ],
+  [
+    "S1::segment_history.csv",
+    true,
+    "ok"
+  ],
+  [
+    "S1::activity_log.csv",
+    true,
+    "ok"
+  ],
+  [
+    "S1::uncertainty_traces.csv",
+    true,
+    "ok"
+  ],
+  [
+    "S1::validation_stats.csv",
+    true,
+    "ok"
+  ],
+  [
+    "S2::activity_log.rep_id",
+    true,
+    "0 orphans"
+  ],
+  [
+    "S2::activity_log.account_id",
+    true,
+    "0 orphans"
+  ],
+  [
+    "S3::activity_log",
+    true,
+    "0 out-of-range"
+  ],
+  [
+    "C1",
+    true,
+    "0 calls on absent days"
+  ],
+  [
+    "C2",
+    true,
+    "0 calls to unavailable accounts"
+  ],
+  [
+    "C3",
+    true,
+    "0 duplicates"
+  ],
+  [
+    "C4",
+    true,
+    "0 days over cap (12)"
+  ],
+  [
+    "C5",
+    true,
+    "0 out-of-hours starts"
+  ],
+  [
+    "T1::sick",
+    true,
+    "observed 6.84 vs target 6.00 (rel 14.06%, tol 31.84%)"
+  ],
+  [
+    "T1::personal",
+    true,
+    "observed 1.98 vs target 3.00 (rel 34.10%, tol 45.03%)"
+  ],
+  [
+    "T1::vacation",
+    true,
+    "observed 13.69 vs target 15.00 (rel 8.75%, tol 20.14%)"
+  ],
+  [
+    "T1::conference",
+    true,
+    "observed 3.95 vs target 4.00 (rel 1.15%, tol 39.00%)"
+  ],
+  [
+    "T2",
+    true,
+    "observed 0.0985 vs target 0.1000"
+  ],
+  [
+    "T3",
+    true,
+    "26.01% accounts shifted/yr"
+  ],
+  [
+    "T4",
+    true,
+    "max |obs-exp|=0.011"
+  ],
+  [
+    "D1",
+    true,
+    "byte-identical"
+  ],
+  [
+    "D2",
+    true,
+    "differ"
+  ],
+  [
+    "D3",
+    true,
+    "byte-identical"
+  ],
+  [
+    "M1",
+    true,
+    "SalesNorm(P*)=1.000000"
+  ],
+  [
+    "M2",
+    true,
+    "SalesNorm(P0)=0.000000"
+  ],
+  [
+    "M3",
+    true,
+    "Coverage=0.6124"
+  ],
+  [
+    "M4",
+    true,
+    "Robustness@0 ratio=1.000000 flagged=False"
+  ],
+  [
+    "M5",
+    true,
+    "curve=[(0.05, 0.9591050125609474, 26.573838446170566, False), (0.1, 0.9217521634435231, 50.753208943894016, False), (0.2, 0.8364928766096444, 106.09274337767185, False)]"
+  ],
+  [
+    "M6",
+    true,
+    "total=1028 sum=1028 {'account_unavail': 0, 'rep_planned': 0, 'rep_unplanned': 0, 'other': 1028}"
+  ],
+  [
+    "FEAS_REJECT",
+    true,
+    "rejected"
+  ]
+]

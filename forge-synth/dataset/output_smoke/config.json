@@ -1,0 +1,65 @@
+{
+  "account_notice_days": 1,
+  "account_unavail_persistence": 0.5,
+  "bag_size_probs": [
+    0.2,
+    0.5,
+    0.3
+  ],
+  "churn_notice_days": 14,
+  "conference_block_lengths": {
+    "2": 0.5,
+    "3": 0.3,
+    "5": 0.2
+  },
+  "conference_days_per_year_mean": 4.0,
+  "conference_notice_days_range": [
+    30,
+    180
+  ],
+  "day_end_minute": 1080,
+  "day_start_minute": 540,
+  "horizon_days": 120,
+  "inter_call_gap_min": 15,
+  "min_eligible_per_brand": 30,
+  "n_workers": 1,
+  "num_accounts_total": 2000,
+  "num_brands_total": 6,
+  "num_forces": 3,
+  "num_reps": 20,
+  "num_specialties": 10,
+  "output_dir": "/Users/madhavagaikwad/Desktop/papers/forecast/forge-synth/dataset/output_smoke",
+  "p_account_unavail": 0.1,
+  "p_churn_annual": 0.1,
+  "personal_block_lengths": {
+    "1": 0.7,
+    "2": 0.3
+  },
+  "personal_days_per_year_mean": 3.0,
+  "personal_friday_monday_mult": 1.5,
+  "personal_notice_days_range": [
+    1,
+    7
+  ],
+  "seed": 42,
+  "sick_autocorr": 0.3,
+  "sick_days_per_year_mean": 6.0,
+  "sick_days_per_year_std": 2.0,
+  "sick_notice_days": 0,
+  "sick_winter_multiplier": 1.5,
+  "softmax_temperature": 1.0,
+  "start_date": "2024-01-01",
+  "vacation_chunk_distribution": {
+    "10": 0.4,
+    "15": 0.15,
+    "20": 0.05,
+    "5": 0.4
+  },
+  "vacation_days_per_year_mean": 15.0,
+  "vacation_notice_days_range": [
+    14,
+    90
+  ],
+  "vacation_summer_winter_mult": 2.0,
+  "warmup_days": 30
+}

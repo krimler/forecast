@@ -1,0 +1,10 @@
+regime,brand_slot,weight
+balanced_3,0,0.34
+balanced_3,1,0.33
+balanced_3,2,0.33
+moderate_3,0,0.5
+moderate_3,1,0.3
+moderate_3,2,0.2
+heavy_3,0,0.6
+heavy_3,1,0.3
+heavy_3,2,0.1
